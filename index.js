@@ -25,17 +25,17 @@ async function run() {
   try {
     const productsCollection = client.db("EarthlySimpleShop").collection("products");
 
-    // all products API
+    // all products API (get all product)
     app.get("/products", async (req, res) => {
       const query = {};
       const products = await productsCollection.find(query).toArray();
       res.send(products);
     });
 
-    // product API
+    // product API (get product by id)
     app.get("/product/:id", async (req, res) => {
       const id = req.params.id;
-      //   console.log(id);
+
       const query = { id: id };
       const product = await productsCollection.findOne(query);
       res.send(product);
